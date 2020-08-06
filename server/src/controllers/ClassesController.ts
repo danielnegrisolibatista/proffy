@@ -28,7 +28,7 @@ export default class ClassesController {
     const classes = await db('classes')
       .whereExists(function() { // subselect
         this.select('classes_schedule.*')
-          .from('class_schedule')
+          .from('classes_schedule')
           .whereRaw('`classes_schedule`.`classes_id` = `classes`.`id`') // where manual usar `` para nomes da tabelas e dos campos
           .whereRaw('`classes_schedule`.`week_day` = ??', [Number(week_day)]) // usar ? para incluir os valores da variáveis no sql
           .whereRaw('`classes_schedule`.`from` <= ??', [timeInMinutes])
@@ -88,7 +88,7 @@ export default class ClassesController {
       return response.status(201).send();
     } catch (err) {
       await trx.rollback();
-  
+      console.log(err);
       return response.status(400).json({
         erro: 'Unexpected erro while creating new class'
       });
