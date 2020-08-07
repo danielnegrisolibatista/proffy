@@ -70,8 +70,6 @@
 
 #### Aprendendo sobre propriedades e Children
 
-
-
 ### Dicas CSS
 
 - font-size: controle do tamanho da fonte
